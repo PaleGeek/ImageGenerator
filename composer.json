@@ -5,9 +5,7 @@
 			"name":"czj"
 		}
 	],
-	"require":{
-		"yiisoft/yii2": "*"
-	},
+	"require":{},
 	"autoload":{
 		"psr-0":{
 			"ImageGenerator":"src/"
