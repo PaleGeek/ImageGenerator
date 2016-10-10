@@ -1,0 +1,14 @@
+{
+	"name":"czj&hzj/image-generator"
+	"authors":[
+		{
+			"name":"czj&hzj"
+		}
+	],
+	"require":{},
+	"autoload":{
+		"psr-0":{
+			"ImageGenerator":"src/"
+		}
+	}
+}
