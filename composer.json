@@ -1,8 +1,8 @@
 {
-	"name":"czj&hzj/image-generator",
+	"name":"czj/image-generator",
 	"authors":[
 		{
-			"name":"czj-hzj"
+			"name":"czj"
 		}
 	],
 	"require":{
