@@ -10,5 +10,10 @@
 		"psr-0":{
 			"ImageGenerator":"src/"
 		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0.0"
+		}
 	}
 }
