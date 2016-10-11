@@ -164,7 +164,7 @@ class ImagickHelper
                         $draw = new ImagickDraw();
                         $draw->composite($frame->getImageCompose(), $x, $y, $dst_width, $dst_height, $frame);
 
-                        $img = new Imagick();
+                        $img = new \Imagick();
                         $img->newImage($width, $height, $color, 'gif');
                         $img->drawImage($draw);
 
@@ -251,13 +251,13 @@ class ImagickHelper
                 }
 
                 $image = $this->image;
-                $canvas = new Imagick();
+                $canvas = new \Imagick();
 
                 if($this->type=='gif')
                 {
                     $images = $image->coalesceImages();
                     foreach($images as $frame){
-                        $img = new Imagick();
+                        $img = new \Imagick();
                         $img->readImageBlob($frame);
                         $img->cropImage($crop_w, $crop_h, $crop_x, $crop_y);
                         $img->thumbnailImage( $width, $height, true );
@@ -286,18 +286,18 @@ class ImagickHelper
     // 添加水印图片
     public function add_watermark($path, $x = 0, $y = 0)
     {
-        $watermark = new Imagick($path);
-        $draw = new ImagickDraw();
+        $watermark = new \Imagick($path);
+        $draw = new \ImagickDraw();
         $draw->composite($watermark->getImageCompose(), $x, $y, $watermark->getImageWidth(), $watermark->getimageheight(), $watermark);
 
         if($this->type=='gif')
         {
             $image = $this->image;
-            $canvas = new Imagick();
+            $canvas = new \Imagick();
             $images = $image->coalesceImages();
             foreach($image as $frame)
             {
-                $img = new Imagick();
+                $img = new \Imagick();
                 $img->readImageBlob($frame);
                 $img->drawImage($draw);
 

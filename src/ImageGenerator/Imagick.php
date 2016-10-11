@@ -8,6 +8,8 @@ namespace ImageGenerator;
  */
 class Imagick
 {
+    private $type = null;
+
     private $image;
     /**
      * @var integer Opened image height
@@ -51,6 +53,10 @@ class Imagick
         $geo = $model->image->getImageGeometry();
         $model->height = $geo['height'];
         $model->width = $geo['width'];
+        if($model->image)
+        {
+            $model->type = strtolower($model->image->getImageFormat());
+        }
         return $model;
     }
     /**
@@ -248,6 +254,37 @@ class Imagick
             } elseif ($height === false) {
                 $this->image->adaptiveResizeImage($width, 0);
             }
+        }
+        return $this;
+    }
+
+    // 输出图像
+    public function output($header = true)
+    {
+        if($header) header('Content-type: '.$this->type);
+        echo $this->image->getImagesBlob();
+    }
+
+
+    // 添加水印文字
+    public function add_text($text, $x = 0 , $y = 0, $angle=0, $style=array())
+    {
+        $draw = new \ImagickDraw();
+        if(isset($style['font'])) $draw->setFont($style['font']);
+        if(isset($style['font_size'])) $draw->setFontSize($style['font_size']);
+        if(isset($style['fill_color'])) $draw->setFillColor($style['fill_color']);
+        if(isset($style['under_color'])) $draw->setTextUnderColor($style['under_color']);
+
+        if($this->type=='gif')
+        {
+            foreach($this->image as $frame)
+            {
+                $frame->annotateImage($draw, $x, $y, $angle, $text);
+            }
+        }
+        else
+        {
+            $this->image->annotateImage($draw, $x, $y, $angle, $text);
         }
         return $this;
     }
