@@ -263,6 +263,7 @@ class Imagick
     {
         if($header) header('Content-type: '.$this->type);
         echo $this->image->getImagesBlob();
+        $this->image->destroy();
     }
 
 
